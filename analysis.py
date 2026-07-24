@@ -63,7 +63,7 @@ for row in rows:
     if row['resolution_status'] == 'Open':
         borough_open_counts[row['borough']] += 1
 
-most_open = max(borough_open_counts, key=borough_open_counts.get)
+most_open = min(borough_counts, key=lambda b: (-borough_counts[b], b))
 open_count = borough_open_counts[most_open]
 
 bronx_rate = round((bronx - borough_open_counts['Bronx']) / bronx * 100, 1)
@@ -85,7 +85,7 @@ most_common = max(complaint_count, key=complaint_count.get)
 top_count = complaint_count[most_common]
 
 sorted_complaints = sorted(complaint_count, key=complaint_count.get, reverse=True)
-sorted_boroughs = sorted(borough_counts, key=borough_counts.get, reverse=True)
+sorted_boroughs = sorted(borough_counts, key=lambda b: (-borough_counts[b], b))
 first, second, third = sorted_boroughs[0], sorted_boroughs[1], sorted_boroughs[2]
 first_count = borough_counts[first]
 second_count = borough_counts[second]
@@ -109,17 +109,17 @@ with open('output.txt', 'w') as f:
     f.write(f"- Rodent: {rodent}\n")
     f.write(f"- Illegal Parking: {parking}\n")
     f.write(f"\n")
-    f.write(f"Borough with most open requests: {most_open}: ({open_count} open)\n")
+    f.write(f"Borough with most open requests: {most_open} ({open_count} open)\n")
     f.write(f"\n")
+    f.write(f"Closure rate by borough:\n")
     f.write(f"- Bronx: {bronx_rate}%\n")
     f.write(f"- Brooklyn: {brooklyn_rate}%\n")
     f.write(f"- Manhattan: {manhattan_rate}%\n")
     f.write(f"- Queens: {queens_rate}%\n")
     f.write(f"- Staten Island: {staten_rate}%\n")  
     f.write(f"\n")
-    f.write(f"Top 3 boroughs by total requests\n")
+    f.write(f"Top 3 boroughs by total requests:\n")
     f.write(f"1. {first} ({first_count} requests)\n")
-    f.write(f"2. {second}({second_count} requests)\n")
-    f.write(f"3. {third}({third_count} requests)\n")
-
+    f.write(f"2. {second} ({second_count} requests)\n")
+    f.write(f"3. {third} ({third_count} requests)\n")
 print("Output saved to output.txt")
