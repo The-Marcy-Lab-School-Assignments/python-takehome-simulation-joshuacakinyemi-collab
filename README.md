@@ -12,8 +12,8 @@ Output will be saved to `output.txt`. The console will confirm when the file has
  
 ## What This Script Does
  
-[Write 2-3 sentences describing what your script does in plain English.]
- 
+This script reads NYC 311 service request data from a CSV file and generates a summary report. The report counts open requests, identifies the most common complaint type, and breaks down total requests by borough.
+
 ## Dependencies
  
 This script uses only Python's built-in libraries: `csv`.
