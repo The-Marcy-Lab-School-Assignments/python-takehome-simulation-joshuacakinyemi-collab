@@ -94,7 +94,7 @@ third_count = borough_counts[third]
 with open('output.txt', 'w') as f:
     f.write(f"Open requests: {open_requests}\n")
     f.write(f"\n")
-    f.write(f"Most common complaint type: {most_common}: ({top_count} requests)\n")
+    f.write(f"Most common complaint type: {most_common} ({top_count} requests)\n")
     f.write(f"\n")
     f.write(f"Requests per borough:\n")
     f.write(f"- Bronx: {bronx}\n")
